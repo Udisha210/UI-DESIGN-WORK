@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<title>REGISTRATION PAGE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+.center {
+	 display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body>
+<div class="w3-container w3-white" style="padding:128px 16px" id="reg" >
+  <h3 class="w3-center">REGISTRATION PROCESS</h3>
+  <p class="w3-center w3-large">Please register yourself to get started.</p>
+  <form action="/action_page.php" target="_blank">
+      <p><input class="w3-input w3-border" type="text" placeholder="Firstname" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Lastname" required name="Name"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Phone number" required name="Phone number"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Designation" required name="Designation"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Address" required name="Address"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Enter UserID" required name="UserID"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Password" required name="Password"></p>
+      <p class="w3-center w3-large">To complete the registration you need to capture a photo of your face. </p>
+      <div>
+	<button  onclick='openwebcam()'>Start Web Camera</button>
+   
+</div>
+<div class="video-wrap">
+    <video id="video" playsinline autoplay></video>
+</div>
+<!-- Trigger canvas web API -->
+<div class="controller">
+    <button id="snap">Capture</button>
+</div>
+
+<!-- Webcam video snapshot -->
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<script >
+	function openwebcam(){
+'use strict';
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const snap = document.getElementById("snap");
+const errorMsgElement = document.querySelector('span#errorMsg');
+
+const constraints = {
+  audio: true,
+  video: {
+    width: 1280, height: 720
+  }
+};
+
+
+async function init() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleSuccess(stream);
+  } catch (e) {
+    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+  }
+}
+
+
+function handleSuccess(stream) {
+  window.stream = stream;
+  video.srcObject = stream;
+}
+
+
+init();
+
+var context = canvas.getContext('2d');
+snap.addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 640, 480);
+});
+}
+
+</script>
+      <p>
+        <button class="w3-button w3-blue" type="submit">
+           SUBMIT
+        </button>
+      </p>
+    </form>
+</div>
+</body>
+</html>

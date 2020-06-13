@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<title>MAIN PAGE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("facereco.jpg");
+  min-height: 100%;
+}
+.center {
+	 display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body>
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-wide ">HOME</a>
+     <!-- Right-sided navbar links -->
+    <div class="w3-right ">
+      <a href="#register" class="w3-bar-item w3-button " onclick='alert("Verify with face recognition first!")'><i class="fa fa-user"></i> REGISTER</a>
+  </div>
+</div>
+</div>
+
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-white" style="padding:48px">
+    <span class="w3-jumbo w3-hide-small">FACE AUTHENTICATION</span><br>
+    <span class="w3-xxlarge w3-hide-large w3-hide-medium">FACE AUTHENTICATION </span><br>
+    <span class="w3-large">Start something that matters.</span>
+    <p><a href="#about" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Click on it to start</a></p>
+  </div> 
+</header>
+
+  <div class="w3-container w3-light-grey " style="padding:150px 16px" id="about">
+  
+  	<img class=" center w3-image w3-round-large" src="face.png" alt="FACE" style="width:10%" ><br>
+  	<div class="w3-center">
+  	<a href="#webcam" class="w3-button w3-blue" onclick='openwebcam()' >Verify</a>
+  </div>
+  <div class="video-wrap" id="webcam">
+    <video id="video" playsinline autoplay></video>
+</div>
+<!-- Trigger canvas web API -->
+<div class="controller">
+    <button class="w3-button w3-light-grey"id="snap">Capture</button>
+</div>
+
+<!-- Webcam video snapshot -->
+<canvas id="canvas" width="640" height="480"></canvas>
+
+<script >
+	function openwebcam(){
+'use strict';
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const snap = document.getElementById("snap");
+const errorMsgElement = document.querySelector('span#errorMsg');
+
+const constraints = {
+  audio: true,
+  video: {
+    width: 1280, height: 720
+  }
+};
+
+
+async function init() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleSuccess(stream);
+  } catch (e) {
+    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+  }
+}
+
+
+function handleSuccess(stream) {
+  window.stream = stream;
+  video.srcObject = stream;
+}
+
+
+init();
+
+var context = canvas.getContext('2d');
+snap.addEventListener("click", function() {
+	context.drawImage(video, 0, 0, 640, 480);
+});
+}
+
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<title>SIGN IN PAGE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+.center {
+	 display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+</style>
+<body>
+<div class="w3-container w3-light-grey" style="padding:120px 16px">
+<h3 class="w3-center">SIGN IN</h3>
+ <p class="w3-center w3-large">Please sign in with your account.</p>
+<form action="/action_page.php" target="_blank">
+      <p>
+      	<input class="w3-input w3-border" type="text" placeholder="UserID" required name="Name"><i class="fa fa-user"></i>
+      </p>
+      <p><input class="w3-input w3-border" type="text" placeholder="Password" required name="Password"><i class="fa fa-key"></i>
+      </p>
+       <p>
+        <button class="w3-button w3-blue" type="submit">
+          <i class="fa fa-sign-in"></i> SIGN IN
+        </button>
+      </p>
+      <p><a href="#" class="w3-right w3-small">Forgot Password?</a></p>	
+</form> 
+</div>  
+</body>
+</html>
